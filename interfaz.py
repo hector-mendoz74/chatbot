@@ -67,8 +67,7 @@ def filter_by_size(query):
     """Filtra productos según la talla mencionada en la consulta del usuario."""
     sizes = ["S", "M", "L", "XL", "U", "32", "34", "26", "27", "28"]  # Lista de tallas comunes
     doc = nlp(query.upper())  # Convertimos la consulta a mayúsculas para coincidir con las tallas
-    detected_sizes = {token.text for token in doc if token.text in sizes}
-    
+    detected_sizes = {token.text for token in doc if token.text in sizes}    
     if detected_sizes:
         results = [p for p in products if p['talla'] in detected_sizes]
         if results:
@@ -76,8 +75,7 @@ def filter_by_size(query):
             for product in results:
                 response += f"- {product['nombre']} (Talla: {product['talla']}, Color: {product['color']}, Precio: ${product['precio']:.2f})\n"
             return response
-        else:
-            return f"No se encontraron productos en las tallas mencionadas: {', '.join(detected_sizes)}."
+        return f"No se encontraron productos en las tallas mencionadas: {', '.join(detected_sizes)}."
     return "No se detectaron tallas válidas en tu consulta."
 
 
@@ -133,9 +131,7 @@ def respond_to_user():
     # Mostrar la respuesta generada
     if response:
         root.bind('<Return>', lambda event: respond_to_user())
-        chat_history.insert(tk.END, f"Bot: {response}\n")
-
-        
+        chat_history.insert(tk.END, f"Bot: {response}\n")      
 
 def extract_budget(query):
     """Extrae el presupuesto del texto ingresado por el usuario."""
@@ -145,7 +141,6 @@ def extract_budget(query):
         if word_clean.replace(".", "").isdigit():  # Verifica si es un número válido
             return float(word_clean)
     return None
-
         
 def filter_by_budget(budget):
     """Devuelve los productos que están dentro del presupuesto dado."""
@@ -155,8 +150,7 @@ def filter_by_budget(budget):
         for product in affordable:
             response += f"- {product['nombre']} (Talla: {product['talla']}, Color: {product['color']}, Precio: ${product['precio']})\n"
         return response
-    else:
-        return f"No se encontraron productos dentro de tu presupuesto de ${budget}."
+    return f"No se encontraron productos dentro de tu presupuesto de ${budget}."
 
 
 # Crear interfaz gráfica
