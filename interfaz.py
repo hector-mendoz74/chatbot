@@ -76,8 +76,7 @@ def filter_by_size(query):
             for product in results:
                 response += f"- {product['nombre']} (Talla: {product['talla']}, Color: {product['color']}, Precio: ${product['precio']:.2f})\n"
             return response
-        else:
-            return f"No se encontraron productos en las tallas mencionadas: {', '.join(detected_sizes)}."
+        return f"No se encontraron productos en las tallas mencionadas: {', '.join(detected_sizes)}."
     return "No se detectaron tallas válidas en tu consulta."
 
 
@@ -155,8 +154,7 @@ def filter_by_budget(budget):
         for product in affordable:
             response += f"- {product['nombre']} (Talla: {product['talla']}, Color: {product['color']}, Precio: ${product['precio']})\n"
         return response
-    else:
-        return f"No se encontraron productos dentro de tu presupuesto de ${budget}."
+    return f"No se encontraron productos dentro de tu presupuesto de ${budget}."
 
 
 # Crear interfaz gráfica
